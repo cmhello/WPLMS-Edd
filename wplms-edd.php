@@ -12,9 +12,13 @@
 /* ===== INTEGRATION with Easy Digital Downloads plugin =========
  *==============================================*/
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
 class WPLMS_EDD{
 	function __construct(){
-		add_action('init',array($this,'add_vibe_edd_metaboxes'));	
+		add_action('init'
+			,array($this,'add_vibe_edd_metaboxes'));	
 		add_filter('wplms_course_product_metabox',array($this,'wplms_course_edd_product_metabox'));	
 		add_filter('edd_microdata_wrapper',array($this,'wplms_courseinfo_edd_downloads_excerpt'));
 		add_action( 'edd_update_payment_status', array($this,'wplms_edd_completed_purchase'), 100, 3 );
